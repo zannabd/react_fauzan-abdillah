@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product</title>
+  </head>
+  <body>
+    <h1>Create Product</h1>
+    <h2>Detail Product</h2>
+    <form>
+      <label>Product name :</label><br />
+      <input type="text" /><br />
+      <label>Product Category :</label><br />
+      <select name="product" id="name" style="width: 3rem">
+        <option value=""></option></select
+      ><br />
+
+      <p>Product Freshness :</p>
+      <input type="radio" id="1" value="Brand New" />
+      <label for="1">Brand New</label><br />
+      <input type="radio" id="2" value="Second Hank" />
+      <label for="2">Second Hank</label><br />
+      <input type="radio" id="3" value="Refurbished" />
+      <label for="3">Refurbished</label>
+      <br />
+      <label for="img-product">Image of Product :</label>
+      <input type="file" name="img-product" id="img-product" />
+      <br />
+      <label for="desc">Additional Description</label><br />
+      <textarea name="description" id="desc" cols="30" rows="6"></textarea>
+      <br />
+      <label for="price">Product Price :</label><br />
+      <input type="number" name="price" id="price" style="width: 3.5rem" />
+      <br />
+      <input type="submit" name="submit" id="submit" />
+    </form>
+  </body>
+</html>
