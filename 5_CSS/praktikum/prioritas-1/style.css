@@ -1,0 +1,132 @@
+#brand {
+  margin: 2rem;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  background-color: #37517e;
+  padding: 5%;
+}
+#judul1 {
+  margin-bottom: 5rem;
+  color: white;
+  font-family: "Jost";
+}
+#judul {
+  color: white;
+  font-family: "Jost";
+}
+
+#left {
+  flex-basis: 60%;
+  padding-left: 7%;
+  align-self: center;
+}
+
+#right {
+  flex-basis: 40%;
+}
+
+#button {
+  margin: 2rem;
+  font-family: "Jost";
+}
+button {
+  padding: 0.8rem;
+  background-color: rgb(0, 166, 255);
+  border-radius: 20px;
+  color: white;
+}
+
+a {
+  color: white;
+  margin-left: 3rem;
+  text-decoration: none;
+}
+#contain {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #ccc;
+  font-family: "Jost";
+}
+
+#inputan {
+  display: flex;
+  max-width: 350px;
+  margin: 20px auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+#subscribe {
+  background-color: rgb(0, 166, 255);
+  border-radius: 20px;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+footer {
+  margin: 0;
+}
+#card {
+  display: flex;
+  flex-basis: 10%;
+  margin-right: 10px;
+  font-family: "Jost";
+}
+
+.carde {
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+h3,
+h2 {
+  color: #37517e;
+}
+
+li {
+  list-style-type: none;
+}
+#circle {
+  height: 50px;
+  width: 50px;
+  background-color: #47b2e4;
+
+  border-radius: 50%;
+}
+
+#shape {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.foot {
+  background-color: #37517e;
+  color: white;
+  padding: 2rem;
+  font-family: "Open Sans";
+}
+.copyright {
+  align-self: center;
+}
+
+#p1 {
+  color: #47b2e4;
+}
+#p2 {
+  justify-content: flex-end;
+  text-align: right;
+}
