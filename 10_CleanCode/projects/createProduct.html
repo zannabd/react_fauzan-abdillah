@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+    <title>Product</title>
+  </head>
+  <body>
+    <!------------------------Navbar Start---------------------------->
+    <nav class="navbar navbar-expand-lg border-bottom">
+      <div class="container-fluid">
+        <h1>Simple Header</h1>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">FAQs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!--------------------------Navbar End------------------------------------->
+    <!-------------------------Contain Start----------------------------------->
+    <div class="text-center m-5">
+      <a class="navbar-brand" href="#">
+        <img src="Bootstrap_logo.svg.png" alt="Bootstrap" width="50" height="44" />
+      </a>
+      <h1>Create Product</h1>
+      <p>Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+    </div>
+    <!-------------------------Contain End----------------------------------->
+    <!--------------------------Form start ---------------------------------->
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <h2>Detail Product</h2>
+          <!----------------- FORM Tag ------------------------->
+          <form class="mb-3" id="myForm">
+            <div class="col-10">
+              <label for="inputProduct" class="form-label">Product name :</label><br />
+              <input type="text" class="form-control" id="inputProduct" /><br />
+            </div>
+            <div class="col-10">
+              <label for="inputProductCategory" class="form-label">Product Category :</label><br />
+              <div class="input-group">
+                <select class="form-select" id="inputProductCategory" aria-label="Example select with button addon">
+                  <option selected>Choose...</option>
+                  <option value="1">1Satu</option>
+                  <option value="2">2Dua</option>
+                  <option value="3">3Tiga</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-10">
+              <label for="inputImage" class="form-label">Image of Product</label>
+              <div class="mb-3">
+                <input class="form-control" type="file" id="inputImage" />
+              </div>
+            </div>
+            <div>
+              <p>Product Freshness :</p>
+              <div id="productFresh">
+                <input type="radio" name="productFresh" value="Brand New" id="brandNew" /> <label for="laki-laki">Brand New</label><br />
+                <input type="radio" name="productFresh" value="Second Hand" id="secondHand" /> <label for="laki-laki">Second Hand</label><br />
+                <input type="radio" name="productFresh" value="Refurbished" id="refurbished" /> <label for="laki-laki">Refurbished</label>
+              </div>
+            </div>
+            <br />
+            <div class="col-10">
+              <label for="description">Additional Description :</label><br />
+              <div class="mb-3">
+                <textarea class="form-control" id="description" rows="3"></textarea>
+              </div>
+            </div>
+            <br />
+            <div class="col-10">
+              <label for="price">Product Price</label><br />
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" name="price" id="price" placeholder="$ 1" />
+              </div>
+            </div>
+            <br />
+            <div class="d-grid gap-2 col-8 mx-auto">
+              <button class="btn btn-primary" onclick="tambahProduct()" id="submitButton " type="submit">Submit</button>
+            </div>
+          </form>
+          <!---------------------- AKHIR FORM ------------------------------>
+        </div>
+      </div>
+    </div>
+    <!-------------------------- Form End ---------------------------------->
+    <!-------------------------- Table Start ------------------------------>
+    <div>
+      <h2 class="text">List Product</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Image of Product</th>
+            <th>Product Freshness</th>
+            <th>Additional Description</th>
+            <th>Product Price</th>
+          </tr>
+        </thead>
+        <tbody id="tableProduct"></tbody>
+      </table>
+    </div>
+    <!-------------------------- Table End -------------------------------->
+    <!------------------------ Searching Part ----------------------------->
+    <div>
+      <div>
+        <input type="text" name="name" id="name" placeholder="Search By Product Name" />
+      </div>
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
+        <label class="btn btn-outline-primary" for="btnradio1">Deletion</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
+        <label class="btn btn-outline-primary" for="btnradio2">Search</label>
+      </div>
+    </div>
+  </body>
+  <!---------------------------- JAVASCRIPT SECTION --------------------------------------->
+  <script>
+    const nomor = 1; // Inisialisasi nomor
+
+    // Funsi untuk menambahkan data ke tabel
+    function tambahProduct(event) {
+      document.getElementById("myForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        // Mendapatkan nilai dari input
+        const productName = document.getElementById("inputProduct").value;
+        const productPrice = document.getElementById("price").value;
+        const productCategory = document.getElementById("inputProductCategory").value;
+        const imageProduct = document.getElementById("inputImage").value;
+        const productFreshness = document.querySelector('input[name="productFresh"]:checked').value;
+        const addDescription = document.getElementById("description").value;
+
+        // Regex untuk memberikan batasan karakter pada input Nama Product
+        let regex = /[@/#{}]/;
+
+        // Validasi input
+        if (productName.length > 25) {
+          alert("Last Name must not exceed 25 characters.");
+          return;
+        } else if (productName === "" && productPrice === "") {
+          alert("Please enter a valid Prouct name.");
+          return;
+        } else if (regex.test(productName)) {
+          alert("Name must not contain symbols.");
+          return;
+        } else if (productCategory === "" || imageProduct === "" || productFreshness === "") {
+          alert("The xxx field must be filled in");
+          return;
+        }
+
+        // Membuat elemen <tr> untuk data baru
+        const tableRow = document.createElement("tr");
+
+        // Membuat element <td> untuk Nama Produk
+        const tdnomor = document.createElement("td");
+        tdnomor.textContent = nomor;
+        const tdProductName = document.createElement("td");
+        tdProductName.textContent = productName;
+        const tdProductCategory = document.createElement("td");
+        tdProductCategory.textContent = productCategory;
+        const tdimageProduct = document.createElement("td");
+        tdimageProduct.textContent = "none";
+        const tdProductFreshness = document.createElement("td");
+        tdProductFreshness.textContent = productFreshness;
+        const tdDescription = document.createElement("td");
+        tdDescription.textContent = addDescription;
+        const tdPrice = document.createElement("td");
+        tdPrice.textContent = productPrice;
+
+        // Menambahkan <td> ke <tr>
+        tableRow.appendChild(tdnomor);
+        tableRow.appendChild(tdProductName);
+        tableRow.appendChild(tdProductCategory);
+        tableRow.appendChild(tdimageProduct);
+        tableRow.appendChild(tdProductFreshness);
+        tableRow.appendChild(tdDescription);
+        tableRow.appendChild(tdPrice);
+
+        // Menambahkan <tr> ke table
+        document.getElementById("tableProduct").appendChild(tableRow);
+
+        // Mmberikan nomor berurut
+        nomor++;
+
+        // Membersihkan input data yang ditambahkan
+        document.getElementById("inputProduct").value = "";
+        document.getElementById("inputProductCategory").value = "";
+        document.getElementById("inputImage").value = "";
+        document.querySelector('input[name="productFresh"]:checked').checked = false;
+        document.getElementById("description").value = "";
+        document.getElementById("price").value = "";
+      });
+    }
+  </script>
+</html>
