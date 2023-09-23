@@ -5,6 +5,7 @@ import img1 from "../../assets/img1.png";
 import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 import React, { useEffect } from "react";
+import Header from "../../components/Header/Header";
 
 function CreateAccount() {
   useEffect(() => {
@@ -12,43 +13,7 @@ function CreateAccount() {
   }, []);
   return (
     <Container>
-      <Navbar className="navbar navbar-expand-lg ">
-        <Container className="container-fluid">
-          <h1>Simple Header</h1>
-          <ul className="nav nav-pills">
-            <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Features
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Pricing
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
-                FAQs
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
-                About
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="my-app/createaccount">
-                Create Account
-              </Link>
-            </li>
-          </ul>
-        </Container>
-      </Navbar>
+      <Header />
       <Container className="m-4">
         <Row className="text-center">
           <Col className="navbar-brand" to="/">
