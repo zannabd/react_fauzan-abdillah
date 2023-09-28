@@ -2,18 +2,22 @@ import { createSlice } from "@reduxjs/toolkit";
 import produk from "../../src/utils/constants/dataProduct";
 
 const productSlice = createSlice({
-  name: "Product Slice",
+  name: "product",
   initialState: {
-    product: produk,
+    products: produk,
   },
   reducers: {
     deleteProduct: (state, action) => {
-      state.product = state.product.filter((item) => {
-        return item.id !== action.payload;
-      });
+    const index = action.payload; // memakai payload untuk menyimpan indeks yang akan dihapus
+    const updatedProduct = [...state.products];
+    updatedProduct.splice(index, 1);
+    state.products = updatedProduct;
     },
   },
 });
 
-export const { deleteProduct } = productSlice.reducer;
-export default productSlice.reducer
+const { deleteProduct } = productSlice.actions;
+const productReducer = productSlice.reducer;
+
+export { deleteProduct };
+export default productReducer;

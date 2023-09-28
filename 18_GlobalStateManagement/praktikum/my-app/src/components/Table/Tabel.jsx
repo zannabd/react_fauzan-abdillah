@@ -1,9 +1,22 @@
 import Table from "react-bootstrap/Table";
 import ListProduct from "../ListProduct/ListProduct";
 
-function Tabel(props) {
-  const { product } = props;
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProduct } from "../../store/productSlice";
 
+function Tabel(props) {
+  // const { product } = props;
+  const product = useSelector((state) => state.product.product);
+  const dispatch = useDispatch();
+
+  function handleDeleteProduct(index) {
+    const confirmDel = window.confirm("Apakah anda yakin ingin menghapus data ini?");
+    if (confirmDel) {
+      setTimeout(() => {
+        dispatch(deleteProduct(index));
+      }, 0);
+    }
+  }
   // function deleteProduct(index) {
   //   const confirmDel = window.confirm("Apakah anda yakin ingin menghapus data ini?");
   //   // const newProduct = product.filter((item) => item.id !== id)
@@ -34,7 +47,7 @@ function Tabel(props) {
           </thead>
           <tbody>
             {product.map((produk) => (
-              <ListProduct produk={produk}  />
+              <ListProduct produk={produk} deleteProduct={handleDeleteProduct} />
               // sebelumnya di list ^^ props deleteProduct={deleteProduct}
             ))}
           </tbody>

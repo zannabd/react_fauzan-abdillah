@@ -1,5 +1,8 @@
+// import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
+// import { deleteProduct } from "../../store/productSlice";
 
 const StyledListProduct = styled.div`
   #linkid {
@@ -10,6 +13,16 @@ const StyledListProduct = styled.div`
 
 function ListProduct(props) {
   const { produk, deleteProduct } = props;
+  // const produk = useSelector((state) => state.product.product);
+  // console.log(produk)
+  // const dispatch = useDispatch();
+
+  // function handleDeleteProduct(index) {
+  //   const confirmDel = window.confirm("Apakah anda yakin ingin menghapus data ini?");
+  //   if (confirmDel) {
+  //     dispatch(deleteProduct(index));
+  //   }
+  // }
   return (
     <tr key={produk.id}>
       <td>
