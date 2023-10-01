@@ -1,22 +1,24 @@
 import Table from "react-bootstrap/Table";
 import ListProduct from "../ListProduct/ListProduct";
+// import { useDispatch } from "react-redux";
 
-import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct } from "../../store/productSlice";
+import { useSelector } from "react-redux";
+// import { deleteProduct } from "../../store/productSlice";
 
 function Tabel(props) {
   // const { product } = props;
-  const product = useSelector((state) => state.product.product);
-  const dispatch = useDispatch();
+  const products = useSelector((state) => state.product.products);
+  // const dispatch = useDispatch();
+  // console.log(products);
 
-  function handleDeleteProduct(index) {
-    const confirmDel = window.confirm("Apakah anda yakin ingin menghapus data ini?");
-    if (confirmDel) {
-      setTimeout(() => {
-        dispatch(deleteProduct(index));
-      }, 0);
-    }
-  }
+  // function handleDeleteProduct(index) {
+  //   const confirmDel = window.confirm("Apakah anda yakin ingin menghapus data ini?");
+  //   if (confirmDel) {
+  //     setTimeout(() => {
+  //       dispatch(deleteProduct(index));
+  //     }, 0);
+  //   }
+  // }
   // function deleteProduct(index) {
   //   const confirmDel = window.confirm("Apakah anda yakin ingin menghapus data ini?");
   //   // const newProduct = product.filter((item) => item.id !== id)
@@ -46,10 +48,10 @@ function Tabel(props) {
             </tr>
           </thead>
           <tbody>
-            {product.map((produk) => (
-              <ListProduct produk={produk} deleteProduct={handleDeleteProduct} />
+            {products.map(function (produk) {
+              return <ListProduct key={produk.id} produk={produk} />;
               // sebelumnya di list ^^ props deleteProduct={deleteProduct}
-            ))}
+            })}
           </tbody>
         </Table>
       </div>
