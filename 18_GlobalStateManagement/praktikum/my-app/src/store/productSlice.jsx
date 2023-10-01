@@ -7,17 +7,18 @@ const productSlice = createSlice({
     products: produk,
   },
   reducers: {
+    addProduct: (state, action) => {
+      state.products.push(action.payload)
+    },
     deleteProduct: (state, action) => {
-    const index = action.payload; // memakai payload untuk menyimpan indeks yang akan dihapus
-    const updatedProduct = [...state.products];
-    updatedProduct.splice(index, 1);
-    state.products = updatedProduct;
+      const index = action.payload; // memakai payload untuk menyimpan indeks yang akan dihapus
+      state.products.splice(index, 1);
     },
   },
 });
 
-const { deleteProduct } = productSlice.actions;
+const { addProduct,deleteProduct } = productSlice.actions;
 const productReducer = productSlice.reducer;
 
-export { deleteProduct };
+export { addProduct, deleteProduct };
 export default productReducer;

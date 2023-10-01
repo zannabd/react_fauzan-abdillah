@@ -1,13 +1,13 @@
 import { Col, Container } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledDetail = styled.div`
   font-family: "Open Sans", sans-serif;
 `;
 function DetailProduk(props) {
-  const { id } = useParams();
-  const { product, setProduct } = props;
+  // const { id } = useParams();
+  const { product } = props;
 
   return (
     <StyledDetail>

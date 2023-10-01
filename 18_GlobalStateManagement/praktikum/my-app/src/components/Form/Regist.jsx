@@ -25,7 +25,7 @@ export default function Regist() {
   }
   function validationSchema() {
     return Yup.object().shape({
-      firsName: Yup.string().min(3, "Minimal 3 karakter").required("Harus diisi"),
+      firstName: Yup.string().min(3, "Minimal 3 karakter").required("Harus diisi"),
       lastName: Yup.string().min(3, "Minimal 3 karakter").required("Harus diisi"),
       userName: Yup.string().required("Harus diisi"),
       email: Yup.string().email("Format email tidak valid").required("Harus diisi"),

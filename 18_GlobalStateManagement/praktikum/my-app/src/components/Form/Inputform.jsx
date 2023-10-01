@@ -1,129 +1,90 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { Alert, Container } from "react-bootstrap";
 
 import Form from "react-bootstrap/Form";
-
+import { useDispatch } from "react-redux";
 import Row from "react-bootstrap/Row";
 import { v4 as uuidv4 } from "uuid";
 // import React, { Component } from "react";
+import { addProduct } from "../../store/productSlice";
 
 function Inputform(props) {
   const { product, setProduct } = props;
+  const dispatch = useDispatch();
 
-  const [productName, setProductName] = useState("");
-  const [productCategory, setProductCategory] = useState("");
-  const [imageProduct, setImageProduct] = useState("");
-  const [productFresh, setProductFresh] = useState("");
-  const [addDescription, setAddDescription] = useState("");
-  const [productPrice, setProductPrice] = useState("");
+  const [formData, setFormData] = useState({
+    productName: "",
+    productCategory: "",
+    imageProduct: "",
+    productFresh: "brandNew", // Default value
+    addDescription: "",
+    productPrice: "",
+  });
 
-  const [isProductNameError, setIsProductNameError] = useState(false);
-  const [isProductCategoryError, setIsProductCategoryError] = useState(false);
-  const [isImageProductError, setIsImageProductError] = useState(false);
-  const [isProductFreshError, setIsProductFreshError] = useState(false);
-  const [isAddDescriptionError, setIsAddDescriptionError] = useState(false);
-  const [isProductPriceError, setIsProductPriceError] = useState(false);
+  const [formErrors, setFormErrors] = useState({
+    productName: false,
+    productCategory: false,
+    imageProduct: false,
+    productFresh: false,
+    addDescription: false,
+    productPrice: false,
+  });
 
-  function handleProductName(e) {
-    const value = e.target.value;
-    const regex = /[@/#{}$]/;
-    let error = "";
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-    if (regex.test(productName)) {
-      error = "Name must not contain symbols.";
-    }
-    if (value.length > 25) {
-      error = "Product Name must not exceed 25 characters.";
-    }
-
-    if (value.trim() === "") {
-      error = "Please enter a valid product name.";
-    }
-
-    setProductName(value);
-    setIsProductNameError(error);
-  }
-
-  function handleProductCategory(e) {
-    const value = e.target.value;
-    let error = "";
-
-    if (value.trim() === "") {
-      error = "Please enter a valid product category.";
-    }
-
-    setProductCategory(value);
-    setIsProductCategoryError(error);
-  }
-
-  function handleImageProduct(e) {
-    setImageProduct(e.target.value);
-  }
-
-  function handleProductFresh(e) {
-    setProductFresh(e.target.value);
-  }
-
-  function handleAddDescription(e) {
-    setAddDescription(e.target.value);
-  }
-
-  function handleProductPrice(e) {
-    setProductPrice(e.target.value);
-  }
-
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    // jika input kosong, set error
-    if (isProductNameError && productName.trim() !== "") {
-      alert("Periksa lagi dan isi yang benar sebelum submit");
+    const { productName, productCategory, imageProduct, productFresh, addDescription, productPrice } = formData;
+
+    const errors = {
+      productName: !productName.trim(),
+      productCategory: !productCategory,
+      imageProduct: !imageProduct,
+      productFresh: !productFresh,
+      addDescription: !addDescription.trim(),
+      productPrice: !productPrice,
+    };
+
+    if (Object.values(errors).some((error) => error)) {
+      setFormErrors(errors);
       return;
-    } else if (productCategory === "") {
-      setIsProductCategoryError(true);
-    } else if (imageProduct === "") {
-      setIsImageProductError(true);
-    } else if (productFresh === "") {
-      setIsProductFreshError(true);
-    } else if (addDescription === "") {
-      setIsAddDescriptionError(true);
-    } else if (productPrice === "") {
-      setIsProductPriceError(true);
-    } else {
-      const produk = {
-        id: uuidv4(),
-        name: productName,
-        category: productCategory,
-        image: imageProduct,
-        freshness: productFresh,
-        description: addDescription,
-        price: productPrice,
-      };
-
-      // Periksa duplikasi UUID
-      const isDuplicate = product.some((item) => item.id === produk.id);
-
-      if (!isDuplicate) {
-        // add product ke table
-        setProduct([...product, produk]);
-      }
-
-      setIsProductNameError(false);
-      setIsProductCategoryError(false);
-      setIsImageProductError(false);
-      setIsProductFreshError(false);
-      setIsAddDescriptionError(false);
-      setIsProductPriceError(false);
     }
 
-    setProductName("");
-    setProductCategory("");
-    setImageProduct("");
-    setProductFresh("");
-    setAddDescription("");
-    setProductPrice("");
-  }
+    const product = {
+      id: uuidv4(),
+      name: productName,
+      category: productCategory,
+      image: imageProduct,
+      freshness: productFresh,
+      description: addDescription,
+      price: productPrice,
+    };
 
+    // Dispatch aksi untuk menambahkan produk
+    dispatch(addProduct(product));
+
+    // Setel ulang formulir dan error
+    setFormData({
+      productName: "",
+      productCategory: "",
+      imageProduct: "",
+      productFresh: "brandNew",
+      addDescription: "",
+      productPrice: "",
+    });
+    setFormErrors({
+      productName: false,
+      productCategory: false,
+      imageProduct: false,
+      productFresh: false,
+      addDescription: false,
+      productPrice: false,
+    });
+  };
   return (
     <Container>
       <div className="row justify-content-center">
@@ -136,8 +97,8 @@ function Inputform(props) {
                 Product name :
               </label>
               <br />
-              <input type="text" className="form-control" id="productName" name="productName" style={{ borderColor: isProductNameError ? "red" : "" }} value={productName} onChange={handleProductName} required />
-              {isProductNameError && <div className="error">{isProductNameError}</div>}
+              <input type="text" className="form-control" id="productName" name="productName" style={{ borderColor: formErrors.productName ? "red" : "" }} value={formData.productName} onChange={handleInputChange} required />
+              {formErrors.productName && <div className="error">{formErrors.productName}</div>}
               <br />
             </Row>
             <Row className="col-10">
@@ -146,13 +107,13 @@ function Inputform(props) {
               </label>
               <br />
               <div className="input-group">
-                <select className="form-select" id="productCategory" name="productCategory" aria-label="Example select with button addon" value={productCategory} onChange={handleProductCategory}>
+                <select className="form-select" id="productCategory" name="productCategory" aria-label="Example select with button addon" value={formData.productCategory} onChange={handleInputChange}>
                   <option selected="">Choose...</option>
                   <option value="1">1Satu</option>
                   <option value="2">2Dua</option>
                   <option value="3">3Tiga</option>
                 </select>
-                {isProductCategoryError && <Alert>The xxx field must be filled in</Alert>}
+                {/* {isProductCategoryError && <Alert>The xxx field must be filled in</Alert>} */}
               </div>
             </Row>
             <Row className="col-10">
@@ -160,25 +121,25 @@ function Inputform(props) {
                 Image of Product
               </label>
               <div className="mb-3">
-                <input className="form-control" type="file" id="inputImage" name="imageProduct" accept=".jpg, .jpeg, .png" value={imageProduct} onChange={handleImageProduct} />
-                {isImageProductError && <Alert>The xxx field must be filled in</Alert>}
+                <input className="form-control" type="file" id="inputImage" name="imageProduct" accept=".jpg, .jpeg, .png" value={formData.imageProduct} onChange={handleInputChange} />
+                {/* {isImageProductError && <Alert>The xxx field must be filled in</Alert>} */}
               </div>
             </Row>
             <Row>
               <p>Product Freshness :</p>
               <div id="productFresh">
                 <label>
-                  <input type="radio" name="productFresh" value="brandNew" id="brandNew" checked={productFresh === "brandNew"} onChange={handleProductFresh} /> Brand New
+                  <input type="radio" name="productFresh" value="brandNew" id="brandNew" checked={formData.productFresh === "brandNew"} onChange={handleInputChange} /> Brand New
                 </label>
                 <br />
                 <label>
-                  <input type="radio" name="productFresh" value="secondHand" id="secondHand" checked={productFresh === "secondHand"} onChange={handleProductFresh} /> Second Hand
+                  <input type="radio" name="productFresh" value="secondHand" id="secondHand" checked={formData.productFresh === "secondHand"} onChange={handleInputChange} /> Second Hand
                 </label>
                 <br />
                 <label>
-                  <input type="radio" name="productFresh" value="refurbished" id="refurbished" checked={productFresh === "refurbished"} onChange={handleProductFresh} /> Refurbished
+                  <input type="radio" name="productFresh" value="refurbished" id="refurbished" checked={formData.Fresh === "refurbished"} onChange={handleInputChange} /> Refurbished
                 </label>
-                {isProductFreshError && <Alert>The xxx field must be filled in</Alert>}
+                {/* {isProductFreshError && <Alert>The xxx field must be filled in</Alert>} */}
               </div>
             </Row>
             <br />
@@ -186,8 +147,8 @@ function Inputform(props) {
               <label htmlFor="description">Additional Description :</label>
               <br />
               <div className="mb-3">
-                <textarea className="form-control" id="description" name="addDeskription" rows={3} value={addDescription} onChange={handleAddDescription} />
-                {isAddDescriptionError && <div className="error">{isAddDescriptionError}</div>}
+                <textarea className="form-control" id="description" name="addDescription" rows={3} value={formData.addDescription} onChange={handleInputChange} />
+                {formErrors.addDescription && <div className="error">{formErrors.addDescription}</div>}
               </div>
             </Row>
             <br />
@@ -195,8 +156,18 @@ function Inputform(props) {
               <label htmlFor="price">Product Price</label>
               <br />
               <div className="input-group mb-3">
-                <input type="text" className="form-control" name="productPrice" id="price" style={{ borderColor: isProductPriceError ? "red" : "" }} placeholder="$ 1" value={productPrice} onChange={handleProductPrice} required />
-                {isProductPriceError && <div className="error">{isProductPriceError}</div>}
+                <input
+                  type="text"
+                  className="form-control"
+                  name="productPrice"
+                  id="price"
+                  style={{ borderColor: formErrors.productPrice ? "red" : "" }}
+                  placeholder="$ 1"
+                  value={formData.productPrice}
+                  onChange={handleInputChange}
+                  required
+                />
+                {formErrors.productPrice && <div className="error">{formErrors.productPrice}</div>}
               </div>
             </Row>
             <br />
