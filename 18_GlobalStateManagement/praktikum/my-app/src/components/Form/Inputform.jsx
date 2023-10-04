@@ -1,5 +1,4 @@
-import { forwardRef, useState } from "react";
-import { Alert, Container } from "react-bootstrap";
+import { useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import { useDispatch } from "react-redux";
@@ -7,9 +6,9 @@ import Row from "react-bootstrap/Row";
 import { v4 as uuidv4 } from "uuid";
 // import React, { Component } from "react";
 import { addProduct } from "../../store/productSlice";
+import { Container } from "react-bootstrap";
 
 function Inputform(props) {
-  const { product, setProduct } = props;
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
