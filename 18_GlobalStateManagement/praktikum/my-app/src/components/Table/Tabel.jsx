@@ -48,8 +48,8 @@ function Tabel(props) {
             </tr>
           </thead>
           <tbody>
-            {products.map(function (produk) {
-              return <ListProduct key={produk.id} produk={produk} />;
+            {products.map(function (produk, index) {
+              return <ListProduct key={index} produk={produk} />;
               // sebelumnya di list ^^ props deleteProduct={deleteProduct}
             })}
           </tbody>

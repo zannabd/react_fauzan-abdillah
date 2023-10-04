@@ -1,9 +1,9 @@
-import { Col, Image, Navbar } from "react-bootstrap";
+import { Col, Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import img1 from "../../assets/img1.png";
 import Row from "react-bootstrap/Row";
-import { Link } from "react-router-dom";
+
 import React, { useEffect } from "react";
 import Header from "../../components/Header/Header";
 
