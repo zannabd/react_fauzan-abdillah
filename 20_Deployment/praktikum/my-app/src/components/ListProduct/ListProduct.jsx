@@ -37,7 +37,7 @@ function ListProduct(props) {
     <tr key={index}>
       <td>
         <StyledListProduct>
-          <Link to={`/my-app/detailproduk/${produk.id}`} id="linkid">
+          <Link to={`/detailproduk/${produk.id}`} id="linkid">
             {produk.id}
           </Link>
         </StyledListProduct>

@@ -31,12 +31,12 @@ function Header() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="my-app/landingpage">
+            <Link className="nav-link" to="/landingpage">
               Landing Page
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="my-app/createaccount">
+            <Link className="nav-link" to="/createaccount">
               Create Account
             </Link>
           </li>
