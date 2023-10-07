@@ -39,8 +39,19 @@ function Inputform(props) {
 
     const { productName, productCategory, imageProduct, productFresh, addDescription, productPrice } = formData;
 
+    // Validasi Product Name
+    if (!productName.trim()) {
+      setFormErrors({ ...formErrors, productName: "Product Name tidak boleh kosong" });
+      return;
+    } else if (productName.length > 25) {
+      setFormErrors({ ...formErrors, productName: "Product Name tidak boleh lebih dari 25 karakter" });
+      return;
+    } else if (/[@/#{}]/.test(productName)) {
+      setFormErrors({ ...formErrors, productName: "Product Name tidak boleh mengandung karakter khusus" });
+      return;
+    }
+
     const errors = {
-      productName: !productName.trim(),
       productCategory: !productCategory,
       imageProduct: !imageProduct,
       productFresh: !productFresh,
@@ -92,11 +103,21 @@ function Inputform(props) {
           {/*--------------- FORM Tag -----------------------*/}
           <Form className="mb-3" id="myForm" onSubmit={handleSubmit}>
             <Row className="col-10">
-              <label htmlFor="inputProduct" className="form-label">
-                Product name :
+              <label htmlfor="productName" id="productName" className="form-label">
+                Product Name :
               </label>
               <br />
-              <input type="text" className="form-control" id="productName" name="productName" style={{ borderColor: formErrors.productName ? "red" : "" }} value={formData.productName} onChange={handleInputChange} required />
+              <input
+                aria-label="Product Name"
+                type="text"
+                className="form-control"
+                id="productName"
+                name="productName"
+                style={{ borderColor: formErrors.productName ? "red" : "" }}
+                value={formData.productName}
+                onChange={handleInputChange}
+                required
+              />
               {formErrors.productName && <div className="error">{formErrors.productName}</div>}
               <br />
             </Row>
