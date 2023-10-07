@@ -39,8 +39,18 @@ function Inputform(props) {
 
     const { productName, productCategory, imageProduct, productFresh, addDescription, productPrice } = formData;
 
+    // Validasi Product Name
+    if (!productName.trim()) {
+      setFormErrors({ ...formErrors, productName: "Product Name tidak boleh kosong" });
+      return;
+    } else if (productName.length > 25) {
+      setFormErrors({ ...formErrors, productName: "Product Name tidak boleh lebih dari 25 karakter" });
+      return;
+    } else if (/[@/#{}]/.test(productName)) {
+      setFormErrors({ ...formErrors, productName: "Product Name tidak boleh mengandung karakter khusus" });
+      return;
+    }
     const errors = {
-      productName: !productName.trim(),
       productCategory: !productCategory,
       imageProduct: !imageProduct,
       productFresh: !productFresh,
