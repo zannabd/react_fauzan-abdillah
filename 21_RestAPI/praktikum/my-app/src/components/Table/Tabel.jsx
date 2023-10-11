@@ -29,6 +29,11 @@ function Tabel() {
   const addProductToList = (newProduct) => {
     setProduct([...product, newProduct]);
   };
+
+  const handleDeleteProduct = (id) => {
+    setProduct(product.filter((product) => product.id !== id));
+  };
+
   return (
     <>
      <Inputform onAddProduct={addProductToList} />
@@ -48,8 +53,8 @@ function Tabel() {
             </tr>
           </thead>
           <tbody>
-            {product.map(function (produk, index) {
-              return <ListProduct key={index} produk={produk} />;
+            {product.map(function (produk) {
+              return <ListProduct key={produk.id} produk={produk} onDelete={handleDeleteProduct}/>;
               // sebelumnya di list ^^ props deleteProduct={deleteProduct}
             })}
           </tbody>
