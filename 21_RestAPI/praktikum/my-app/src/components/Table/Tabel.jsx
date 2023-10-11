@@ -5,6 +5,7 @@ import ListProduct from "../ListProduct/ListProduct";
 import { useEffect, useState } from "react";
 // import { deleteProduct } from "../../store/productSlice";
 import axios from "axios";
+import Inputform from "../Form/Inputform";
 
 function Tabel() {
   // const products = useSelector((state) => state.product.products);
@@ -23,8 +24,14 @@ function Tabel() {
 
     getProducts();
   }, []);
+
+  // Callback untuk nambahin produk baru ke state lokal
+  const addProductToList = (newProduct) => {
+    setProduct([...product, newProduct]);
+  };
   return (
     <>
+     <Inputform onAddProduct={addProductToList} />
       <div>
         <h2 className="text">List Product</h2>
         <Table className="table table-striped">
@@ -48,21 +55,6 @@ function Tabel() {
           </tbody>
         </Table>
       </div>
-      {/* <div>
-        <div>
-          <input type="text" name="name" id="name" placeholder="Search By Product Name" />
-        </div>
-        <div className="btn-group" role="group" aria-label="Basic radio toggle button group">
-          <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autoComplete="off" defaultChecked="" />
-          <label className="btn btn-outline-primary" htmlFor="btnradio1">
-            Deletion
-          </label>
-          <input type="radio" className="btn-check" name="btnradio" id="btnradio2" autoComplete="off" />
-          <label className="btn btn-outline-primary" htmlFor="btnradio2">
-            Search
-          </label>
-        </div>
-      </div> */}
     </>
   );
 }

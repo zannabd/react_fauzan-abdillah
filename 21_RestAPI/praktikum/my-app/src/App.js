@@ -13,7 +13,8 @@ import Login from "./components/Form/Login";
 // import Public from "./pages/OtherPage/Public";
 // import Private from "./pages/OtherPage/PrivatePage";
 import Regist from "./components/Form/Regist";
-import EditForm from "./components/Form/EditForm";
+// import EditForm from "./components/Form/EditForm";
+import EditProduct from "./components/EditProduct/EditProduct";
 // import { persistor } from "./store/store";
 
 // import { PersistGate } from "redux-persist/integration/react";
@@ -35,7 +36,7 @@ function App() {
         <Route path="/my-app/detailproduk/:id" element={<DetailProduk product={product} ListProduct={ListProduct} />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Regist />}></Route>
-        <Route path="/edit/:id" element={<EditForm product={product}/>}></Route>
+        <Route path="/edit/:id" element={<EditProduct product={product} setProduct={setProduct}/>}></Route>
 
         {/* <Route path="/public" element={<Public />}></Route> */}
         {/* <Route path="/private" element={isAuthenticated ? <Private /> : <Navigate to="/login" />}></Route> */}

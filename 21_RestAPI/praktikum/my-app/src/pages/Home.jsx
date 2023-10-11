@@ -1,6 +1,6 @@
 import Header from "../components/Header/Header";
 import Hero from "../components/Hero/Hero";
-import Inputform from "../components/Form/Inputform";
+// import Inputform from "../components/Form/Inputform";
 import Tabel from "../components/Table/Tabel";
 
 
@@ -20,7 +20,7 @@ function Home(props) {
     <div>
       <Header />
       <Hero />
-      <Inputform product={product} setProduct={setProduct} />
+      {/* <Inputform product={product} setProduct={setProduct} /> */}
       <Tabel product={product} setProduct={setProduct} />
     </div>
   );

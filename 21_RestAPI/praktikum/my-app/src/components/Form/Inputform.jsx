@@ -1,15 +1,16 @@
 import { useState } from "react";
 
 import Form from "react-bootstrap/Form";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import Row from "react-bootstrap/Row";
 import { v4 as uuidv4 } from "uuid";
 // import React, { Component } from "react";
-import { addProduct } from "../../store/productSlice";
+// import { addProduct } from "../../store/productSlice";
 import { Container } from "react-bootstrap";
+import axios from "axios";
 
-function Inputform(props) {
-  const dispatch = useDispatch();
+function Inputform({ onAddProduct, judul}) {
+  // const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     productName: "",
@@ -34,7 +35,7 @@ function Inputform(props) {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const { productName, productCategory, imageProduct, productFresh, addDescription, productPrice } = formData;
@@ -64,42 +65,47 @@ function Inputform(props) {
       return;
     }
 
-    const product = {
-      id: uuidv4(),
-      name: productName,
-      category: productCategory,
-      image: imageProduct,
-      freshness: productFresh,
-      description: addDescription,
-      price: productPrice,
-    };
+    try {
+      const response = await axios.post("https://6524e7f8ea560a22a4ea3f65.mockapi.io/products", {
+        id: uuidv4(),
+        name: productName,
+        category: productCategory,
+        image: imageProduct,
+        freshness: productFresh,
+        description: addDescription,
+        price: productPrice,
+      });
 
-    // Dispatch aksi untuk menambahkan produk
-    dispatch(addProduct(product));
+      // // Dispatch aksi untuk menambahkan produk
+      // dispatch(addProduct(product));
 
-    // Setel ulang formulir dan error
-    setFormData({
-      productName: "",
-      productCategory: "",
-      imageProduct: "",
-      productFresh: "brandNew",
-      addDescription: "",
-      productPrice: "",
-    });
-    setFormErrors({
-      productName: false,
-      productCategory: false,
-      imageProduct: false,
-      productFresh: false,
-      addDescription: false,
-      productPrice: false,
-    });
+      onAddProduct(response.data);
+      // Setel ulang formulir dan error
+      setFormData({
+        productName: "",
+        productCategory: "",
+        imageProduct: "",
+        productFresh: "brandNew",
+        addDescription: "",
+        productPrice: "",
+      });
+      setFormErrors({
+        productName: false,
+        productCategory: false,
+        imageProduct: false,
+        productFresh: false,
+        addDescription: false,
+        productPrice: false,
+      });
+    } catch (error) {
+      console.log("Gagal menambah produk", error);
+    }
   };
   return (
     <Container>
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <h2>Detail Product</h2>
+          <h2>{judul}</h2>
           {/*--------------- FORM Tag -----------------------*/}
           <Form className="mb-3" id="myForm" onSubmit={handleSubmit}>
             <Row className="col-10">
