@@ -11,6 +11,7 @@ function Tabel() {
   // const products = useSelector((state) => state.product.products);
 
   const [product, setProduct] = useState([]);
+  const [editedProduct, setEditedProduct] = useState(null);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -34,9 +35,18 @@ function Tabel() {
     setProduct(product.filter((product) => product.id !== id));
   };
 
+  const handleEditProduct = (editedProduct) => {
+    setProduct((product) =>
+      product.map((product) =>
+        product.id === editedProduct.id ? editedProduct : product
+      )
+    );
+    setEditedProduct(null);
+  };
+
   return (
     <>
-     <Inputform onAddProduct={addProductToList} />
+      <Inputform onAddProduct={addProductToList} editedProduct={editedProduct}/>
       <div>
         <h2 className="text">List Product</h2>
         <Table className="table table-striped">
@@ -54,7 +64,7 @@ function Tabel() {
           </thead>
           <tbody>
             {product.map(function (produk) {
-              return <ListProduct key={produk.id} produk={produk} onDelete={handleDeleteProduct}/>;
+              return <ListProduct key={produk.id} produk={produk} onDelete={handleDeleteProduct} onEdit={handleEditProduct} />;
               // sebelumnya di list ^^ props deleteProduct={deleteProduct}
             })}
           </tbody>

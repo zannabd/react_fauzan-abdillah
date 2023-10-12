@@ -36,7 +36,7 @@ function App() {
         <Route path="/my-app/detailproduk/:id" element={<DetailProduk product={product} ListProduct={ListProduct} />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Regist />}></Route>
-        <Route path="/edit/:id" element={<EditProduct product={product} setProduct={setProduct}/>}></Route>
+        <Route path="/edit/:id" element={<EditProduct />}></Route>
 
         {/* <Route path="/public" element={<Public />}></Route> */}
         {/* <Route path="/private" element={isAuthenticated ? <Private /> : <Navigate to="/login" />}></Route> */}
