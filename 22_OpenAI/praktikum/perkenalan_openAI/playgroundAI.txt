@@ -1,0 +1,17 @@
+
+Input : berikan contoh gaya hidup yang relevan sebagai orang dengan mbti INFP
+
+Output : 
+Sebagai seorang INFP (Introverted, Intuitive, Feeling, dan Perceiving), saya memiliki gaya hidup yang berbeda dengan orang-orang yang memiliki tipe kepribadian lain. Berikut ini adalah contoh gaya hidup yang relevan sebagai orang dengan mbti INFP:
+
+1. Mengejar Passion dan Tujuan Hidup
+Sebagai seorang INFP, saya terbiasa memusatkan diri pada tujuan hidup dan passion yang saya miliki. Saya cenderung memiliki kekuatan dalam hal daya cipta dan imajinasi, sehingga saya seringkali berusaha untuk mengejar passion dan tujuan hidup yang sesuai dengan nilai-nilai pribadi saya. Saya bisa menjadi sangat tekun dan fokus ketika mengejar sesuatu yang saya percaya dan sukai.
+
+2. Mengutamakan Empati dan Keteduhan
+Saya memiliki kemampuan untuk memahami dan merasakan emosi orang lain dengan mudah, sehingga saya cenderung bersikap empatik dan penuh perhatian pada orang-orang di sekitar saya. Saya sangat sensitif terhadap kebutuhan dan perasaan orang lain, dan saya berusaha untuk menciptakan lingkungan yang penuh keteduhan dan mendukung bagi mereka.
+
+3. Mencintai Alami dan Kedamaian
+Sebagai seorang introvert, saya menikmati waktu sendiri dan suasana yang tenang. Saya cenderung menyukai alam dan mencari ketenangan di dalamnya, seperti berjalan-jalan di taman atau mendaki gunung. Saya juga mendapatkan energi dari kesendirian, yang memungkinkan saya untuk memikirkan hal-hal secara mendalam dan membuat keputusan yang tepat.
+
+4. Menulis dan Berimajinasi
+Saya menyukai seni dan memiliki imajinasi yang kuat. Saya sering mengekspresikan diri saya melalui tulisan dan menikmati proses membangun dunia imajiner untuk mengekspresikan gagasan-gagasan dan emosi yang saya rasakan. Menulis dan berimajinasi juga membantu saya mengolah dan memahami kompleksitas pikiran dan perasaan saya.
