@@ -40,7 +40,7 @@ export default function Login() {
     localStorage.setItem("user", JSON.stringify(user));
     console.log("User logged in:", user);
     // Redirect ke halaman tertentu setelah login
-    navigate("/");
+    navigate("/my-app/createproduct");
   }
 
   function handleSubmit(e) {
