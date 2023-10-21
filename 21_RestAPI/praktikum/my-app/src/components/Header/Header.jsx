@@ -31,8 +31,8 @@ function Header() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="my-app/landingpage">
-              Landing Page
+            <Link className="nav-link" to="my-app/createproduct">
+              Create Product
             </Link>
           </li>
           <li className="nav-item">

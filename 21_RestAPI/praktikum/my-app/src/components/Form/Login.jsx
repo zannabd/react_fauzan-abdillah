@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -22,6 +23,26 @@ export default function Login() {
     return errors;
   }
 
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+
+  //   const formErrors = validateForm();
+  //   setErrors(formErrors);
+
+  //   if (Object.keys(formErrors).length === 0) {
+  //     console.log("Data Login : ", formData);
+  //   }
+  // }
+
+  function handleLogin() {
+    // Simulasi data login berhasil
+    const user = { email: formData.email, isLoggedIn: true };
+    localStorage.setItem("user", JSON.stringify(user));
+    console.log("User logged in:", user);
+    // Redirect ke halaman tertentu setelah login
+    navigate("/");
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -29,13 +50,13 @@ export default function Login() {
     setErrors(formErrors);
 
     if (Object.keys(formErrors).length === 0) {
-      console.log("Data Login : ", formData);
+      handleLogin();
     }
   }
 
- const button = {
-  color: '#fff',
- }
+  const button = {
+    color: "#fff",
+  };
 
   return (
     <Container className="row justify-content-center">
@@ -63,9 +84,7 @@ export default function Login() {
             <p>
               Silakan registrasi
               <button className="btn btn-primary m-3" style={button}>
-                <Link to="/register">
-                  Register
-                </Link>
+                <Link to="/register">Register</Link>
               </button>
             </p>
           </Row>

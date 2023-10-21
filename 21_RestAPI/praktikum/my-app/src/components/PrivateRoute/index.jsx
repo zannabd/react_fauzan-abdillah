@@ -1,8 +1,8 @@
-import { Route, Navigate } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 
-function PrivateRoute({ component: Component, isAuthenticated, ...rest }) {
-  <Route {...rest} render={(props) => (isAuthenticated ? <Component {...props} /> : <Navigate to="/login" />)} />;
-}
+// function PrivateRoute({ component: Component, isAuthenticated, ...rest }) {
+//   <Route {...rest} render={(props) => (isAuthenticated ? <Component {...props} /> : <Navigate to="/login" />)} />;
+// }
 
 // function PrivateRoute({ component: Component, ...rest }) {
 //   return (
@@ -18,5 +18,18 @@ function PrivateRoute({ component: Component, isAuthenticated, ...rest }) {
 //     />
 //   );
 // }
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      localStorage.getItem("user") ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/login" />
+      )
+    }
+  />
+);
+
 
 export default PrivateRoute;

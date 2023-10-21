@@ -30,9 +30,9 @@ function App() {
     <div>
       {/* <PersistGate loading={null} persistor={persistor}> */}
       <Routes>
-        <Route path="/" element={<Home product={product} setProduct={setProduct} />}></Route>
+        <Route path="/my-app/createproduct" element={<Home product={product} setProduct={setProduct} />}></Route>
         <Route path="/my-app/createaccount" element={<CreateAccount />}></Route>
-        <Route path="/my-app/landingpage" element={<LandingPage />}></Route>
+        <Route path="/" element={<LandingPage />}></Route>
         <Route path="/my-app/detailproduk/:id" element={<DetailProduk product={product} ListProduct={ListProduct} />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Regist />}></Route>
