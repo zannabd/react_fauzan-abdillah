@@ -16,10 +16,10 @@ const productSlice = createSlice({
     },
     editProduct: (state, action) => {
       const { id, updatedProduct } = action.payload;
-      const productIndex = state.products.findIndex((product) => product.id === id)
-      
+      const productIndex = state.products.findIndex((product) => product.id === id);
+
       if (productIndex !== -1) {
-        state[productIndex] = { ...state[productIndex], ...updatedProduct}
+        state[productIndex] = { ...state[productIndex], ...updatedProduct };
       }
       // const updatedState = [...state];
       // updatedState[index] = updatedProduct;

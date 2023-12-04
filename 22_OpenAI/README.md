@@ -25,3 +25,20 @@
 1. OpenaAI = free trial, mudah dipasang, dipakai  banyak user, jumlah parameter 175 miliar (mode davinci 03)
 2. npm install openai, import module, deklarasi objek, deklarasi state, deklarasi handleClick, render component 
 3. API Keys OpenAI terdapat di web https://platform.openai.com/account/api-keys
+
+# -Basic Model OpenAI dan Prompt Engginer di React
+
+1. Keuntungan mempelajari model dan prompt :
+- Meningkatkan Penggunaan Model OpenAI
+- Membangun Aplikasi AI yang lebi relevan
+- Mengoptimalkan Output model AI
+- Meningkatkan daya saing di Bidang AI
+2. Memahami model OpenAI = sistem AI yang bisa digunakan untuk mempelajari pola-pola dari data untuk menghasilkan output yang sesuai dengan data yang diberikan. seperti (GPT-4, GPT 3.5, DALL-E, Codex, dll)
+3. Basic Prompt Engineeer = teknik yang digunkaan untuk mengoptimalakan output dari model AI dengan memberika prompt.
+4. Mempelajari est Practice untuk Prompy Engineering :
+- Prompt relevan dengan output
+- Dapatkan informasi dari berbagai sumber
+- Berikan contoh keluaran yang diinginkan
+- berikan data dengan jumlah yang besar
+5. Belajar Implementasi dari pembuatan prompt untuk Parse unstructure data : https://platform.openai.com/examples/default-parse-data
+
